@@ -1,0 +1,48 @@
+{
+  "products": [],
+  "orders": [
+    {
+      "id": "76c643c3-b61b-4215-b9ed-b1d0908b380f",
+      "userEmail": "admin@x5.com",
+      "discordId": "re_li8",
+      "items": [
+        {
+          "productId": "5ffbb766-8f61-4c69-8652-956087177890",
+          "name": "IPVanish 1 Year",
+          "price": 71.11,
+          "image": "https://picsum.photos/seed/4/400/400",
+          "quantity": 1
+        }
+      ],
+      "total": 71.11,
+      "status": "Pending",
+      "createdAt": "2026-04-17T19:22:54.218Z"
+    }
+  ],
+  "siteSettings": {
+    "siteName": "X5 Store",
+    "siteDescription": "Your premium gaming & digital services store",
+    "heroTitle": "Welcome to X5",
+    "heroSubtitle": "Premium digital products with instant delivery",
+    "rulesContent": "All sales are final. Digital products are delivered instantly.",
+    "supportEmail": "support@x5.com",
+    "supportPhone": "+1234567890"
+  },
+  "users": [
+    {
+      "id": "dfb6ea03-533c-4165-98ad-3b31905ffd40",
+      "email": "ahmdgaming2011@gmail.com",
+      "password": "123456789",
+      "name": "R",
+      "createdAt": "2026-04-17T18:54:42.260Z"
+    },
+    {
+      "id": "e7dc4ca3-d09b-4986-8e0a-4b6ec029bf1d",
+      "email": "e6xl22@gmail.com",
+      "password": "AH___mdx.1",
+      "name": "Re",
+      "discordUsername": "1wx7",
+      "createdAt": "2026-04-18T14:26:23.738Z"
+    }
+  ]
+}
