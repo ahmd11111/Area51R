@@ -1,7 +1,7 @@
 // Admin Configuration
 module.exports = {
-  adminEmail: 'X5Admin@support.com',
-  adminPassword: 'X5Admin2026',
+  adminEmail: 'mohamedalkhameiri15@gmail.com',
+  adminPassword: 'Moza3119989',
   siteName: 'X5 Store',
   siteDescription: 'Your premium shopping destination'
 };
