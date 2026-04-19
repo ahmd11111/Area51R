@@ -215,11 +215,11 @@ function checkAdminPassword(req, res, next) {
   // Security: Only allow access if password matches ADMIN_PASSWORD (line 14)
   if (password === ADMIN_PASSWORD) {
     req.session.user = {
-      email: 'X5Admin@support.com',
+      email: 'mohamedalkhameiri15@gmail.com,
       role: 'Administrator',
       name: 'Admin',
       authenticated: true,
-      adminPassword: ADMIN_PASSWORD // Store for verification
+      adminPassword: Moza3119989 // Store for verification
     };
     return res.redirect('/admin');
   }
@@ -344,7 +344,7 @@ app.post('/login', async (req, res) => {
       name: 'Admin',
       discordUsername: discordUsername || null,
       authenticated: true,
-      adminPassword: ADMIN_PASSWORD
+      adminPassword: Moza3119989
     };
     return res.redirect('/');
   }
