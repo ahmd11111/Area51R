@@ -1,0 +1,76 @@
+<%- include('../partials/header') %>
+
+<!-- Product Form Section -->
+<section class="admin-section">
+  <div class="container">
+    <div class="form-container">
+      <div class="form-header">
+        <h1><i class="fas <%= product ? 'fa-edit' : 'fa-plus' %>"></i> <%= product ? 'Edit Product' : 'New Product' %></h1>
+      </div>
+      
+      <form action="<%= product ? '/edit/' + product.id : '/admin/products/new' %>" method="POST" class="product-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">
+              <i class="fas fa-tag"></i> Product Name
+            </label>
+            <input type="text" id="name" name="name" required 
+              value="<%= product ? product.name : '' %>"
+              placeholder="Enter product name">
+          </div>
+          
+          <div class="form-group">
+            <label for="price">
+              <i class="fas fa-dollar-sign"></i> Price
+            </label>
+            <input type="number" id="price" name="price" step="0.01" min="0" required 
+              value="<%= product ? product.price : '' %>"
+              placeholder="0.00">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="category">
+              <i class="fas fa-folder"></i> <%= t('admin.category') || 'Category' %>
+            </label>
+            <select id="category" name="category">
+              <option value="سيارات" <%= product && product.category === 'سيارات' ? 'selected' : '' %>>🚗 سيارات (Cars)</option>
+              <option value="عصابات" <%= product && product.category === 'عصابات' ? 'selected' : '' %>>👥 عصابات (Gangs)</option>
+              <option value="متاجر ومحلات" <%= product && product.category === 'متاجر ومحلات' ? 'selected' : '' %>>🏪 متاجر ومحلات (Stores)</option>
+              <option value="شخصيات" <%= product && product.category === 'شخصيات' ? 'selected' : '' %>>👤 شخصيات (Characters)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="image">
+              <i class="fas fa-image"></i> Image URL
+            </label>
+            <input type="url" id="image" name="image" 
+              value="<%= product ? product.image : '' %>"
+              placeholder="https://example.com/image.jpg">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="description">
+            <i class="fas fa-align-left"></i> Description
+          </label>
+          <textarea id="description" name="description" rows="4" 
+            placeholder="Enter product description"><%= product ? product.description : '' %></textarea>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">
+            <i class="fas <%= product ? 'fa-save' : 'fa-plus' %>"></i> <%= product ? 'Update Product' : 'Add Product' %>
+          </button>
+          <a href="/admin/products" class="btn btn-secondary">
+            <i class="fas fa-times"></i> Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

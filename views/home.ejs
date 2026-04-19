@@ -1,0 +1,92 @@
+<%- include('partials/header') %>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title"><%= typeof settings !== 'undefined' && settings.heroTitle ? settings.heroTitle : t('home.heroTitle') %></h1>
+    <p class="hero-subtitle"><%= typeof settings !== 'undefined' && settings.heroSubtitle ? settings.heroSubtitle : t('home.heroSubtitle') %></p>
+    <div class="hero-buttons">
+      <a href="/store" class="btn btn-primary">
+        <i class="fas fa-store"></i> <%= t('home.shopNow') %>
+      </a>
+      <a href="/rules" class="btn btn-secondary">
+        <i class="fas fa-info-circle"></i> <%= t('home.learnMore') %>
+      </a>
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+  <div class="container">
+    <h2 class="section-title">لماذا تختارنا؟</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3>دفع آمن</h3>
+        <p>معالجة دفع 100% آمنة ومحمية</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-undo"></i>
+        </div>
+        <h3>إرجاع خلال 24 ساعة فقط</h3>
+        <p>سياسة إرجاع مرنة وسريعة</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-headset"></i>
+        </div>
+        <h3>دعم على مدار الساعة</h3>
+        <p>خدمة عملاء متاحة 24/7</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Payment Methods Section -->
+<section class="payment-methods">
+  <div class="container">
+    <h2 class="section-title">طرق الدفع المتاحة</h2>
+    <div class="payment-grid">
+      <div class="payment-card">
+        <i class="fab fa-paypal"></i>
+        <span>PayPal</span>
+      </div>
+      <div class="payment-card">
+        <i class="fab fa-bitcoin"></i>
+        <span>Binance</span>
+      </div>
+      <div class="payment-card">
+        <i class="fab fa-cc-visa"></i>
+        <span>Visa</span>
+      </div>
+      <div class="payment-card">
+        <i class="fab fa-cc-mastercard"></i>
+        <span>MasterCard</span>
+      </div>
+      <div class="payment-card">
+        <i class="fab fa-apple"></i>
+        <span>Apple Pay</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+  <div class="container">
+    <h2><%= t('home.ctaTitle') %></h2>
+    <p><%= t('home.ctaDesc') %></p>
+    <a href="/store" class="btn btn-primary">
+      <i class="fas fa-store"></i> <%= t('home.browseStore') %>
+    </a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
