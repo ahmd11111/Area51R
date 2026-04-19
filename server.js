@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 3000;
 // Location: server.js line 14
 // Current Admin: X5Admin@support.com / X5Admin2026
 // =============================================================================
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'X5Admin2026';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Moza3119989';
 // =============================================================================
 
 // Discord Webhook function for automated delivery
@@ -219,7 +219,7 @@ function checkAdminPassword(req, res, next) {
       role: 'Administrator',
       name: 'Admin',
       authenticated: true,
-      adminPassword: Moza3119989 // Store for verification
+      adminPassword: ADMIN_PASSWORD // Store for verification
     };
     return res.redirect('/admin');
   }
