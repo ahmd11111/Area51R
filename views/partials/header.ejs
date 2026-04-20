@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- عنوان الصفحة الديناميكي -->
+  <title><%= typeof title !== 'undefined' ? title : 'Area51' %></title>
 
+  <!-- Favicon - أيقونة الموقع في تبويب المتصفح -->
+  <!-- تم إضافة ?v=2 لكسر كاش المتصفح أثناء التطوير -->
+  <link rel="icon" type="image/x-icon" href="/logo/favicon.ico?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/logo/favicon.ico?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/logo/favicon.ico?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/logo/favicon.ico?v=2">
+
+  <!-- ملفات التنسيق والخطوط -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    body { direction: rtl; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      
+      <!-- Right: Brand Logo + Name -->
+      <a href="/" class="logo">
+        <!-- اللوجو الصورة -->
+        <img src="/Logo/Area.png" alt="Area 51" class="logo-img">
+        
+        <!-- اسم الموقع النصي: يأخذه من الإعدادات أو يكتب Area 51 افتراضياً -->
+        <span class="logo-text">
+          <%= typeof settings !== 'undefined' && settings.siteName ? settings.siteName : 'Area 51' %>
+        </span>
+      </a>
+      
+      <!-- Center: Navigation Links -->
+      <ul class="nav-links">
+        <!-- تم تعديل شرط active ليتطابق مع العنوان الجديد Area51 -->
+        <li><a href="/" class="<%= typeof title !== 'undefined' && title === 'Area51' ? 'active' : '' %>">
+          <i class="fas fa-home"></i> الرئيسية
+        </a></li>
+        <li><a href="/store" class="<%= typeof title !== 'undefined' && title === 'Store' ? 'active' : '' %>">
+          <i class="fas fa-store"></i> المتجر
+        </a></li>
+        <li><a href="/rules" class="<%= typeof title !== 'undefined' && title === 'Rules' ? 'active' : '' %>">
+          <i class="fas fa-gavel"></i> القوانين
+        </a></li>
+        <li><a href="/leaderboard" class="<%= typeof title !== 'undefined' && title === 'Leaderboard' ? 'active' : '' %>">
+          <i class="fas fa-trophy"></i> لوحة المتصدرين
+        </a></li>
+      </ul>
+      
+      <!-- Left: Auth Buttons -->
+      <div class="nav-auth">
+        <% if (typeof user !== 'undefined' && user) { %>
+          <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+            <a href="/admin" class="auth-btn admin-btn">
+              <i class="fas fa-cog"></i> لوحة الإدارة
+            </a>
+          <% } %>
+          <a href="/logout" class="auth-btn logout">
+            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+          </a>
+        <% } else { %>
+          <a href="/login" class="auth-btn">
+            <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+          </a>
+          <a href="/register" class="auth-btn register">
+            <i class="fas fa-user-plus"></i> إنشاء حساب
+          </a>
+        <% } %>
+      </div>
+      
+      <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Floating Cart Button -->
+  <a href="/cart" class="floating-cart">
+    <i class="fas fa-shopping-cart"></i>
+    <% if (typeof cart !== 'undefined' && cart.length > 0) { %>
+      <span class="cart-count"><%= cart.reduce((sum, item) => sum + item.quantity, 0) %></span>
+    <% } %>
+  </a>
+
+<!-- ملاحظة: لا تغلق body هنا لأن footer.ejs سيغلقها -->
