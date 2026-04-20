@@ -166,7 +166,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.get('/', async (req, res) => { await db.read(); res.render('home', { title: 'Area51', settings: db.data.siteSettings }); });
+app.get('/', async (req, res) => { await db.read(); res.render('home', { title: 'Home', settings: db.data.siteSettings }); });
 app.get('/store', async (req, res) => { await db.read(); res.render('store', { title: 'Store', products: db.data.products, settings: db.data.siteSettings }); });
 app.get('/rules', async (req, res) => { await db.read(); res.render('rules', { title: 'Rules', settings: db.data.siteSettings }); });
 
