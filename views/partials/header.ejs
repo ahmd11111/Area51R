@@ -3,35 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- عنوان الصفحة يتغير ديناميكياً حسب الصفحة -->
   <title><%= typeof title !== 'undefined' ? title : 'Area51' %></title>
 
-  <!-- Favicon - الأفضل استخدام .ico -->
+  <!-- Favicon - أيقونة الموقع في تبويب المتصفح -->
+  <!-- تأكد من وجود ملف favicon.ico في مجلد public -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <!-- احتياطي: إذا لم تجد .ico استخدم png من مجلد logo -->
+  <!-- <link rel="icon" type="image/png" href="/logo/Area.png"> -->
 
   <link rel="stylesheet" href="/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     body { direction: rtl; }
   </style>
 </head>
 <body>
-  <!-- Navbar etc. -->
-<body>
+
   <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="nav-container">
+      
       <!-- Right: Brand Logo + Name -->
       <a href="/" class="logo">
+        <!-- اللوجو الصورة -->
         <img src="/Logo/Area.png" alt="Area 51" class="logo-img">
-        <span class="logo-text">Area 51</span>
+        
+        <!-- اسم الموقع النصي: يأخذه من الإعدادات أو يكتب Area 51 افتراضياً -->
+        <span class="logo-text">
+          <%= typeof settings !== 'undefined' && settings.siteName ? settings.siteName : 'Area 51' %>
+        </span>
       </a>
       
       <!-- Center: Navigation Links -->
       <ul class="nav-links">
-        <li><a href="/" class="<%= typeof title !== 'undefined' && title === 'Home' ? 'active' : '' %>">
+        <li><a href="/" class="<%= typeof title !== 'undefined' && title === 'Area51' ? 'active' : '' %>">
           <i class="fas fa-home"></i> الرئيسية
         </a></li>
         <li><a href="/store" class="<%= typeof title !== 'undefined' && title === 'Store' ? 'active' : '' %>">
@@ -79,3 +91,5 @@
       <span class="cart-count"><%= cart.reduce((sum, item) => sum + item.quantity, 0) %></span>
     <% } %>
   </a>
+
+<!-- ملاحظة: لا تغلق body هنا لأن footer.ejs سيغلقها -->
