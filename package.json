@@ -1,0 +1,26 @@
+{
+  "name": "x5-website",
+  "version": "1.0.0",
+  "description": "E-commerce website with Dark Red and Black theme",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@paypal/checkout-server-sdk": "^1.0.3",
+    "bcrypt": "^6.0.0",
+    "body-parser": "^1.20.4",
+    "dotenv": "^17.4.2",
+    "ejs": "^3.1.9",
+    "express": "^4.22.1",
+    "express-session": "^1.19.0",
+    "lowdb": "^7.0.1",
+    "paypal-rest-sdk": "^1.8.1",
+    "session": "^0.1.0",
+    "uuid": "^9.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

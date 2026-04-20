@@ -1,0 +1,90 @@
+<%- include('../partials/header') %>
+
+<!-- Admin Edit Text Section -->
+<section class="admin-section">
+  <div class="container">
+    <div class="form-container">
+      <div class="form-header">
+        <h1><i class="fas fa-pen"></i> <%= t('admin.editSiteText') %></h1>
+        <p>Update any text on your site</p>
+      </div>
+      
+      <form action="/admin/edit-text" method="POST" class="edit-text-form">
+        <div class="form-group">
+          <label for="key">
+            <i class="fas fa-list"></i> <%= t('admin.selectElement') %>
+          </label>
+          <select id="key" name="key" required>
+            <option value="">-- Select --</option>
+            <optgroup label="General">
+              <option value="siteName"><%= t('admin.siteName') %></option>
+              <option value="siteDescription"><%= t('admin.siteDescription') %></option>
+            </optgroup>
+            <optgroup label="Home Page">
+              <option value="heroTitle"><%= t('admin.heroTitle') %></option>
+              <option value="heroSubtitle"><%= t('admin.heroSubtitle') %></option>
+            </optgroup>
+            <optgroup label="Rules">
+              <option value="rulesContent"><%= t('admin.rulesContent') %></option>
+            </optgroup>
+            <optgroup label="Support">
+              <option value="supportEmail"><%= t('admin.supportEmail') %></option>
+              <option value="supportPhone"><%= t('admin.supportPhone') %></option>
+            </optgroup>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>
+            <i class="fas fa-eye"></i> <%= t('admin.currentValue') %>
+          </label>
+          <div class="current-value-display" id="currentValue">
+            <%= typeof settings !== 'undefined' && settings[key] ? settings[key] : 'Select an element to see current value' %>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="value">
+            <i class="fas fa-edit"></i> <%= t('admin.newValue') %>
+          </label>
+          <textarea id="value" name="value" rows="4" 
+            placeholder="Enter new value"></textarea>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> <%= t('admin.update') %>
+          </button>
+          <a href="/admin" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> <%= t('admin.backToStore') %>
+          </a>
+        </div>
+      </form>
+      
+      <!-- Preview Section -->
+      <div class="text-preview">
+        <h3><i class="fas fa-preview"></i> Live Preview</h3>
+        <div class="preview-box" id="previewBox">
+          <p>Select an element and enter a new value to see preview</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Update current value display when selection changes
+  document.getElementById('key').addEventListener('change', function() {
+    const key = this.value;
+    const settings = <%- JSON.stringify(typeof settings !== 'undefined' ? settings : {}) %>;
+    const currentValue = settings[key] || 'No value set';
+    document.getElementById('currentValue').textContent = currentValue;
+  });
+  
+  // Live preview
+  document.getElementById('value').addEventListener('input', function() {
+    document.getElementById('previewBox').textContent = this.value || 'Enter a value to see preview';
+  });
+</script>
+
+<%- include('../partials/footer') %>

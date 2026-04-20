@@ -1,0 +1,5 @@
+npm install
+node server.js
+npm install @paypal/checkout-server-sdk
+npm install paypal-rest-sdk
+node test-webhook.js

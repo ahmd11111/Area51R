@@ -1,0 +1,65 @@
+<%- include('../partials/header') %>
+
+<!-- Admin Coupons Page -->
+<section class="admin-section">
+  <div class="admin-header">
+    <h1><i class="fas fa-ticket-alt"></i> إدارة الكوبونات</h1>
+    <p>إضافة، حذف وتعديل كوبونات الخصم</p>
+  </div>
+  <div class="admin-actions">
+    <a href="/admin" class="btn btn-secondary">
+      <i class="fas fa-arrow-right"></i> العودة للوحة التحكم
+    </a>
+  </div>
+  <div class="admin-content">
+    <form action="/admin/coupons/new" method="POST" class="coupon-form">
+      <div class="form-group">
+        <label for="code">رمز الكوبون</label>
+        <input type="text" id="code" name="code" required placeholder="مثال: Area51">
+      </div>
+      <div class="form-group">
+        <label for="discount">قيمة الخصم (%)</label>
+        <input type="number" id="discount" name="discount" required min="1" step="0.01" placeholder="مثال: 10">
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-plus"></i> إضافة كوبون
+      </button>
+    </form>
+    <hr>
+    <h2>جميع الكوبونات</h2>
+    <% if (coupons && coupons.length > 0) { %>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>رمز الكوبون</th>
+            <th>قيمة الخصم (%)</th>
+            <th>الإجراءات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% coupons.forEach(function(coupon) { %>
+            <tr>
+              <td><%= coupon.code %></td>
+              <td><%= coupon.discount %></td>
+              <td>
+                <form action="/admin/coupons/delete/<%= coupon.id %>" method="POST" style="display:inline-block">
+                  <button type="submit" class="btn btn-delete" onclick="return confirm('هل أنت متأكد من حذف الكوبون؟');">
+                    <i class="fas fa-trash"></i> حذف
+                  </button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="no-data">
+        <i class="fas fa-ticket-alt"></i>
+        <h2>لا توجد كوبونات</h2>
+        <p>لم تقم بإضافة أي كوبونات بعد.</p>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

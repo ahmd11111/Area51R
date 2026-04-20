@@ -1,0 +1,77 @@
+<%- include('../partials/header') %>
+
+<!-- Admin Orders Section -->
+<section class="admin-section">
+  <div class="container">
+    <div class="admin-header">
+      <h1><i class="fas fa-shopping-bag"></i> <%= t('admin.orders') %> Management</h1>
+      <p>View and manage customer orders</p>
+    </div>
+    
+    <div class="admin-content">
+      <% if (orders && orders.length > 0) { %>
+        <div class="admin-table-container">
+          <table class="admin-table orders-table">
+            <thead>
+              <tr>
+                <th><%= t('admin.orderId') %></th>
+                <th><%= t('admin.customer') %></th>
+                <th><%= t('admin.items') %></th>
+                <th><%= t('admin.total') %></th>
+                <th><%= t('admin.status') %></th>
+                <th><%= t('admin.date') %></th>
+                <th><%= t('admin.actions') %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% orders.forEach(function(order) { %>
+                <tr>
+                  <td>
+                    <span class="order-id"><%= order.id.substring(0, 8) %>...</span>
+                  </td>
+                  <td><%= order.userEmail %></td>
+                  <td>
+                    <% if (order.items && order.items.length > 0) { %>
+                      <%= order.items.length %> item(s)
+                    <% } else { %>
+                      -
+                    <% } %>
+                  </td>
+                  <td>$<%= order.total ? order.total.toFixed(2) : '0.00' %></td>
+                  <td>
+                    <span class="badge status-<%= order.status.toLowerCase() %>">
+                      <%= t('status.' + order.status.toLowerCase()) || order.status %>
+                    </span>
+                  </td>
+                  <td><%= new Date(order.createdAt).toLocaleDateString() %></td>
+                  <td>
+                    <form action="/admin/orders/<%= order.id %>/status" method="POST" class="status-form">
+                      <select name="status" onchange="this.form.submit()">
+                        <option value="Pending" <%= order.status === 'Pending' ? 'selected' : '' %>><%= t('status.pending') %></option>
+                        <option value="Processing" <%= order.status === 'Processing' ? 'selected' : '' %>>Processing</option>
+                        <option value="Shipped" <%= order.status === 'Shipped' ? 'selected' : '' %>>Shipped</option>
+                        <option value="Delivered" <%= order.status === 'Delivered' ? 'selected' : '' %>>Delivered</option>
+                        <option value="Cancelled" <%= order.status === 'Cancelled' ? 'selected' : '' %>>Cancelled</option>
+                      </select>
+                    </form>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      <% } else { %>
+        <div class="no-data">
+          <i class="fas fa-shopping-bag"></i>
+          <h3>No Orders Yet</h3>
+          <p>Orders will appear here when customers make purchases.</p>
+          <a href="/store" class="btn btn-secondary">
+            <i class="fas fa-store"></i> View Store
+          </a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,57 @@
+{
+  "products": [
+    {
+      "id": "782ccb7b-b673-4f04-8fae-dd488a695d43",
+      "name": "BMW",
+      "price": 16,
+      "description": "",
+      "category": "سيارات",
+      "image": "https://static0.hotcarsimages.com/wordpress/wp-content/uploads/2022/01/BMW-m4-GTS---Front.jpg?q=50&fit=crop&w=1600&h=900&dpr=1.5",
+      "createdAt": "2026-04-18T22:11:47.498Z"
+    }
+  ],
+  "orders": [
+    {}
+  ],
+  "siteSettings": {
+    "siteName": "Area Store",
+    "siteDescription": "Area 51 FiveM Store",
+    "heroTitle": "Welcome to Area",
+    "heroSubtitle": "Premium digital products with instant delivery",
+    "rulesContent": "All sales are final. Digital products are delivered instantly.",
+    "supportEmail": "soon",
+    "supportPhone": "soon"
+  },
+  "users": [
+    {
+      "id": "dfb6ea03-533c-4165-98ad-3b31905ffd40",
+      "email": "ahmdgaming2011@gmail.com",
+      "password": "123456789",
+      "name": "R",
+      "createdAt": "2026-04-17T18:54:42.260Z"
+    },
+    {
+      "id": "e7dc4ca3-d09b-4986-8e0a-4b6ec029bf1d",
+      "email": "e6xl22@gmail.com",
+      "password": "AH___mdx.1",
+      "name": "Re",
+      "discordUsername": "1wx7",
+      "createdAt": "2026-04-18T14:26:23.738Z"
+    },
+    {
+      "id": "0f26c204-8be7-4566-aa01-e5669a13c358",
+      "email": "mohamednasim7710@gmail.com",
+      "password": "Area51@2026!",
+      "name": "Msk",
+      "discordUsername": "msk",
+      "createdAt": "2026-04-19T20:59:28.510Z"
+    }
+  ],
+  "coupons": [
+    {
+      "id": "444a9038-6202-4c4e-a6b8-e8f9765f9790",
+      "code": "A51",
+      "discount": 5
+    }
+  ]
+}
