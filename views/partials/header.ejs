@@ -8,11 +8,8 @@
   <title><%= typeof title !== 'undefined' ? title : 'Area51' %></title>
 
   <!-- Favicon - أيقونة الموقع في تبويب المتصفح -->
-  <!-- تأكد من وجود ملف favicon.ico في مجلد public -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  
-  <!-- احتياطي: إذا لم تجد .ico استخدم png من مجلد logo -->
-  <!-- <link rel="icon" type="image/png" href="/logo/Area.png"> -->
+  <!-- المسار الصحيح بناءً على مجلد public -->
+  <link rel="icon" type="image/x-icon" href="/logo/favicon.ico">
 
   <link rel="stylesheet" href="/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +40,7 @@
       
       <!-- Center: Navigation Links -->
       <ul class="nav-links">
+        <!-- تم تعديل شرط active ليتطابق مع العنوان الجديد Area51 -->
         <li><a href="/" class="<%= typeof title !== 'undefined' && title === 'Area51' ? 'active' : '' %>">
           <i class="fas fa-home"></i> الرئيسية
         </a></li>
