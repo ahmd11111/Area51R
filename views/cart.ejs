@@ -89,14 +89,60 @@
 
           <% if (typeof user !== 'undefined' && user) { %>
             
-            <!-- PayPal Button Container -->
-            <div id="paypal-button-container" style="margin-top: 25px;"></div>
+            <!-- PayPal Button Container - مهم جداً: تأكد من وجود هذا العنصر -->
+            <div id="paypal-button-container" style="margin-top: 25px; min-height: 150px;"></div>
+
+            <!-- Load PayPal SDK -->
+            <script src="https://www.paypal.com/sdk/js?client-id=<%= PAYPAL_CLIENT_ID %>&currency=USD&intent=capture"></script>
+            
+            <script>
+                // تأكد من أن PayPal محمل قبل التنفيذ
+                if (typeof paypal !== 'undefined') {
+                    paypal.Buttons({
+                        createOrder: function(data, actions) {
+                            return fetch('/api/create-paypal-order', {
+                                method: 'post',
+                                headers: { 'content-type': 'application/json' }
+                            }).then(function(res) {
+                                return res.json();
+                            }).then(function(orderData) {
+                                return orderData.id;
+                            });
+                        },
+                        onApprove: function(data, actions) {
+                            return fetch('/api/capture-paypal-order', {
+                                method: 'post',
+                                headers: { 'content-type': 'application/json' },
+                                body: JSON.stringify({ orderID: data.orderID })
+                            }).then(function(res) {
+                                return res.json();
+                            }).then(function(details) {
+                                if (details.status === 'success') {
+                                    alert('تم الدفع بنجاح! رقم الطلب: ' + details.orderId);
+                                    window.location.href = '/order-success?orderId=' + details.orderId;
+                                } else {
+                                    alert('حدث خطأ أثناء معالجة الدفع.');
+                                }
+                            });
+                        },
+                        onError: function(err) {
+                            console.error('PayPal Error:', err);
+                            alert('حدث خطأ في نظام الدفع. يرجى المحاولة مرة أخرى.');
+                        }
+                    }).render('#paypal-button-container');
+                } else {
+                    console.error('PayPal SDK failed to load.');
+                    document.getElementById('paypal-button-container').innerHTML = '<p style="color:red; text-align:center;">خطأ في تحميل نظام الدفع. يرجى تحديث الصفحة.</p>';
+                }
+            </script>
 
           <% } else { %>
             <div class="login-prompt" style="text-align: center; margin-top: 20px; padding: 15px; background: #2a2a2a; border-radius: 8px;">
-              <p style="color: #ccc; margin-bottom: 10px;"><i class="fas fa-info-circle"></i> <%= t('cart.loginToCheckout') %></p>
+              <p style="color: #ccc; margin-bottom: 10px;">
+                <i class="fas fa-lock"></i> يجب تسجيل الدخول لإتمام عملية الدفع
+              </p>
               <a href="/login" class="btn btn-primary" style="display: inline-block; background: #ff3333; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
-                <i class="fas fa-sign-in-alt"></i> Login
+                <i class="fas fa-sign-in-alt"></i> سجل دخول الآن
               </a>
             </div>
           <% } %>
@@ -126,16 +172,6 @@
     if (code) {
       window.location.href = '/cart?promo=' + encodeURIComponent(code);
     }
-  });
-
-  // Simple hover effects for buttons
-  document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('mouseenter', function() {
-      this.style.opacity = '0.9';
-    });
-    btn.addEventListener('mouseleave', function() {
-      this.style.opacity = '1';
-    });
   });
 </script>
 
